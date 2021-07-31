@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import './TodoTemplate.scss';
+import '../../lib/styles/TodoTemplate.scss';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 const TodoTemplate = ({ children }) => {
   const [getMoment, setMoment] = useState(moment());

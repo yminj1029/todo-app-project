@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TodoListItem from './TodoListItem';
-import './TodoList.scss';
+import '../../lib/styles/TodoList.scss';
 import axios from 'axios';
 
 const TodoList = ({ date }) => {
@@ -21,7 +21,7 @@ const TodoList = ({ date }) => {
           console.log(response.data);
         } else {
           const response = await axios.get('http://127.0.0.1:8000/api', {
-            params: { date: '2021-07-30' },
+            params: { date: '2021-07-31' },
           });
           setData(response.data);
           console.log(response.data);
