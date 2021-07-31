@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { MdAdd } from 'react-icons/md';
-import './TodoInsert.scss';
+import '../../lib/styles/TodoInsert.scss';
 import axios from 'axios';
 
 const TodoInsert = () => {
