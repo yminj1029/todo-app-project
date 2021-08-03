@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import '../../lib/styles/TodoTemplate.scss';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+
 const TodoTemplate = ({ children }) => {
   const [getMoment, setMoment] = useState(moment());
   const today = getMoment;
@@ -76,6 +77,7 @@ const TodoTemplate = ({ children }) => {
     setDate(datepicker);
     console.log('템플릿:', date);
   };
+
   return (
     <div className="TodoTemplate">
       <div className="white-box">

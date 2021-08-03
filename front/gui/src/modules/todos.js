@@ -31,7 +31,13 @@ export const removeTodo = ({ id }) => ({
 
 // 초기 상태
 const initialState = {
-  pikedDate: moment().format('YYYY-MM-DD'),
+  todos: {
+    pikedDate: moment().format('YYYY-MM-DD'),
+  },
+  addTodo: {
+    content: '',
+    nickname: '',
+  },
 };
 
 //리듀서 함수
@@ -40,11 +46,12 @@ function todo(state = initialState, action) {
     case CHANGE_DATE:
       return {
         ...state,
-        pikedDate: action.pikedDate,
+        todos: action.pikedDate,
       };
     case INSERT_TODO:
       return {
         ...state,
+        addTodo: action,
       };
     case TOGGLE_TODO:
       return {
