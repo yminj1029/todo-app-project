@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import '../../lib/styles/TodoTemplate.scss';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { changeDate } from '../../modules/todos';
 
 const TodoTemplate = ({ children }) => {
+  const dispatch = useDispatch();
   const [getMoment, setMoment] = useState(moment());
   const today = getMoment;
-  const [date, setDate] = useState('');
 
   //startOf('month') : 그 달의 시작하는 week()
   const firstWeek = today.clone().startOf('month').week();
@@ -74,8 +76,11 @@ const TodoTemplate = ({ children }) => {
   };
 
   const handleDate = (datepicker) => {
-    setDate(datepicker);
-    console.log('템플릿:', date);
+    dispatch(
+      changeDate({
+        pikedDate: datepicker,
+      })
+    );
   };
 
   return (
