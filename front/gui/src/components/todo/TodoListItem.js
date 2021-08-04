@@ -11,18 +11,18 @@ import axios from 'axios';
 const TodoListItem = ({ id, content, checked }) => {
   const onRemove = () => {
     console.log('hi!', id);
-    axios
-      .delete(`http://127.0.0.1:8000/api/${id}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    // axios
+    //   .delete(`http://127.0.0.1:8000/api/${id}`)
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
   };
 
   const onToggle = () => {
     console.log(id, !checked);
-    axios
-      .patch(`http://127.0.0.1:8000/api/${id}/`, { check: !checked })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    // axios
+    //   .patch(`http://127.0.0.1:8000/api/${id}/`, { check: !checked })
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
   };
 
   return (

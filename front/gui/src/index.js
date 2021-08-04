@@ -1,15 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import './index.css';
 import App from './App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import reportWebVitals from './reportWebVitals';
-import rootReducer from './modules';
+import rootReducer, { rootSaga } from './modules';
+import createSagaMiddleware from 'redux-saga';
 
+const sagaMiddleware = createSagaMiddleware();
 //리덕스 스토어 만듦 -> redux-devtools사용
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
+
+sagaMiddleware.run(rootSaga);
+
 // console.log(store.getState());
 ReactDOM.render(
   <React.StrictMode>

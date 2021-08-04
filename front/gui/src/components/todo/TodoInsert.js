@@ -11,24 +11,24 @@ const TodoInsert = () => {
   }, []);
 
   const onInsert = () => {
-    axios
-      .post('http://127.0.0.1:8000/api/', {
-        content: value,
-        nickname: 'why',
-        check: false,
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    // axios
+    //   .post('http://127.0.0.1:8000/api/', {
+    //     content: value,
+    //     nickname: 'why',
+    //     check: false,
+    //   })
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
   };
 
-  const onSubmit = useCallback(
-    (e) => {
-      onInsert();
-      // e.preventDefault(); // 새로고침 사용안함.
-      setValue(''); //value 값 초기화
-    },
-    [onInsert, value]
-  );
+  const onSubmit =
+    useCallback();
+    // (e) => {
+    //   onInsert();
+    //   // e.preventDefault(); // 새로고침 사용안함.
+    //   setValue(''); //value 값 초기화
+    // },
+    // [onInsert, value]
 
   //data 값이 유효할때
   return (

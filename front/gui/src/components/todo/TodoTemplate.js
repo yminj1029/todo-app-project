@@ -3,10 +3,19 @@ import moment from 'moment';
 import '../../lib/styles/TodoTemplate.scss';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { changeDate } from '../../modules/todos';
+import { listTodos } from '../../modules/list';
 
 const TodoTemplate = ({ children }) => {
   const dispatch = useDispatch();
+  const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
+
+  useEffect(() => {
+    dispatch(listTodos(date));
+  }, [dispatch, date]);
+  const handleDate = (datepicker) => {
+    setDate(datepicker);
+  };
+
   const [getMoment, setMoment] = useState(moment());
   const today = getMoment;
 
@@ -73,14 +82,6 @@ const TodoTemplate = ({ children }) => {
       );
     }
     return result;
-  };
-
-  const handleDate = (datepicker) => {
-    dispatch(
-      changeDate({
-        pikedDate: datepicker,
-      })
-    );
   };
 
   return (
