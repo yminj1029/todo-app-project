@@ -21,14 +21,13 @@ const TodoInsert = () => {
     //   .catch((err) => console.log(err));
   };
 
-  const onSubmit =
-    useCallback();
-    // (e) => {
-    //   onInsert();
-    //   // e.preventDefault(); // 새로고침 사용안함.
-    //   setValue(''); //value 값 초기화
-    // },
-    // [onInsert, value]
+  const onSubmit = useCallback();
+  // (e) => {
+  //   onInsert();
+  //   // e.preventDefault(); // 새로고침 사용안함.
+  //   setValue(''); //value 값 초기화
+  // },
+  // [onInsert, value]
 
   //data 값이 유효할때
   return (

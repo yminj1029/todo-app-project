@@ -3,10 +3,11 @@ import { all } from 'redux-saga/effects';
 import todos from './todos';
 import list, { listSaga } from './list';
 import loading from './loading';
-
+import date from './date';
 const rootReducer = combineReducers({
   todos,
   list,
+  date,
   loading,
 });
 

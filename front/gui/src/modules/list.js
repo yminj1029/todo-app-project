@@ -18,7 +18,6 @@ export const listTodos = createAction(LIST_TODOS, (date) => date);
 //takeLates :가장 마지막 action만 처리
 const listTodosSaga = createRequestSaga(LIST_TODOS, todoAPI.listTodos);
 export function* listSaga() {
-  console.log('?');
   yield takeLatest(LIST_TODOS, listTodosSaga);
 }
 

@@ -1,14 +1,13 @@
 import './App.css';
 import TodoTemplate from './components/todo/TodoTemplate';
-import TodoList from './components/todo/TodoList';
-import TodoInsert from './components/todo/TodoInsert';
-
+import CalendarContainer from './containers/CalendarContainer';
+import ListContainer from './containers/ListContainer';
 function App() {
   return (
     <div className="App">
       <TodoTemplate>
-        <TodoInsert></TodoInsert>
-        <TodoList></TodoList>
+        <CalendarContainer></CalendarContainer>
+        <ListContainer></ListContainer>
       </TodoTemplate>
     </div>
   );
