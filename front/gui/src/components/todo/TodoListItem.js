@@ -6,7 +6,7 @@ import {
 } from 'react-icons/md';
 import '../../lib/styles/TodoListItem.scss';
 import cn from 'classnames';
-import axios from 'axios';
+// import axios from 'axios';
 
 const TodoListItem = ({ id, content, checked }) => {
   const onRemove = () => {
