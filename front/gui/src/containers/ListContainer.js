@@ -23,17 +23,7 @@ const ListContainer = () => {
     dispatch(listTodos(date));
   }, [date, dispatch]);
 
-  // const onRemove = () => {
-  //   console.log('gg');
-  //   // console.log('hi!', id);
-  // };
-
-  // const onToggle = () => {
-  //   console.log('tt');
-  //   // console.log(id, !checked);
-  // };
-
-  return <TodoList data={data}></TodoList>;
+  return <TodoList data={data} date={date}></TodoList>;
 };
 
 export default ListContainer;

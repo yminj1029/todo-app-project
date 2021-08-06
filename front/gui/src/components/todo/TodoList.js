@@ -18,7 +18,7 @@ const TodoList = ({ data, date }) => {
   return (
     <div className="todo-template">
       <div className="app-title">
-        <h3>{date} 일정 관리</h3>
+        <h3>{date} 일정</h3>
       </div>
       <div className="content"></div>
       <InsertContainer></InsertContainer>
