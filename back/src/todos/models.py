@@ -1,5 +1,5 @@
 from django.db import models
-
+import datetime
 # Create your models here.
 # 테이블을 정의하는 파일, 데이터 베이스 처리를 ORM기법을 사용한다.
 
@@ -10,7 +10,7 @@ class Todo(models.Model):
     # json serialized text version of your list
     check = models.BooleanField(default=False)
     # auto를 사용하고 싶다면 null=True가 필요
-    date = models.DateField(auto_now_add=True, null=True)
+    date = models.DateField(default=datetime.date.today())
     # todo에서 삭제했다면 False, 아니라면 True : 삭제해도 기록 남아있게 함.
 
     def __str__(self):
