@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
-import todos from './todos';
+import todo, { insertSaga, checkSaga, removeSaga } from './todo';
 import list, { listSaga } from './list';
 import loading from './loading';
 import date from './date';
 const rootReducer = combineReducers({
-  todos,
+  todo,
   list,
   date,
   loading,
 });
 
 export function* rootSaga() {
-  yield all([listSaga()]);
+  yield all([listSaga(), insertSaga(), checkSaga(), removeSaga()]);
 }
 export default rootReducer;
 
