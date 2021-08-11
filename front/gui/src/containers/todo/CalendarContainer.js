@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import Calendar from '../components/todo/Calendar';
-import { changeDate } from '../modules/date';
+import Calendar from '../../components/todo/Calendar';
+import { changeDate } from '../../modules/date';
 
 const CalendarContainer = () => {
   //캘린더에 클릭한 날짜 -> redux state로

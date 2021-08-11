@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import TodoList from '../components/todo/TodoList';
+import TodoList from '../../components/todo/TodoList';
 import { useSelector, useDispatch } from 'react-redux';
-import { listTodos } from '../modules/list';
+import { listTodos } from '../../modules/todo';
 
 const ListContainer = () => {
   const dispatch = useDispatch();
@@ -9,8 +9,8 @@ const ListContainer = () => {
   //redux state에 있는 값 꺼내옴
   const { date, data, error } = useSelector((state) => ({
     date: state.date.date,
-    data: state.list.todos,
-    error: state.list.error,
+    data: state.todo.todos,
+    error: state.todo.error,
   }));
 
   if (error) {

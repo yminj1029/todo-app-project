@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import TodoInsert from '../components/todo/TodoInsert';
+import React, { useState, useCallback, useEffect } from 'react';
+import TodoInsert from '../../components/todo/TodoInsert';
 import { useSelector, useDispatch } from 'react-redux';
-import { insertTodo } from '../modules/todo';
+import { insertTodo, listTodos } from '../../modules/todo';
 
 const InsertContainer = () => {
   const [value, setValue] = useState('');
@@ -9,7 +9,7 @@ const InsertContainer = () => {
 
   const { date, error } = useSelector((state) => ({
     date: state.date.date,
-    error: state.list.error,
+    error: state.todo.error,
   }));
 
   if (error) {
@@ -31,6 +31,11 @@ const InsertContainer = () => {
     [dispatch, value, date]
   );
 
+  // useEffect(() => {
+  //   return () => {
+  //     // dispatch(listTodos(date));
+  //   };
+  // });
   return (
     <TodoInsert
       value={value}

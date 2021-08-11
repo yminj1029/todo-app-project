@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeTodo, checkTodo } from '../modules/todo';
-import TodoListItem from '../components/todo/TodoListItem';
+import { removeTodo, checkTodo } from '../../modules/todo';
+import TodoListItem from '../../components/todo/TodoListItem';
 
 const ItemContainer = ({ id, content, checked }) => {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const ItemContainer = ({ id, content, checked }) => {
     },
     [dispatch, id, checked]
   );
+
   return (
     <TodoListItem
       id={id}

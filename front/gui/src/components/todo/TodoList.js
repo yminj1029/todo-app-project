@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../lib/styles/TodoList.scss';
-import InsertContainer from '../../containers/InsertContainer';
-import ItemContainer from '../../containers/ItemContainer';
+import InsertContainer from '../../containers/todo/InsertContainer';
+import ItemContainer from '../../containers/todo/ItemContainer';
 
 const TodoList = ({ data, date }) => {
   function isEmptyArr(arr) {
