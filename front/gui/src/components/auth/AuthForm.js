@@ -59,9 +59,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             // value={form.passwordConfirm}
           ></input>
         )}
-        <button lime fullWidth>
-          {text}
-        </button>
+        <button>{text}</button>
       </form>
       <div className="footer">
         {type === 'login' ? (
