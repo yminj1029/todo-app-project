@@ -9,8 +9,8 @@ import * as authAPI from '../lib/api/auth';
 const CHANGE_FIELD = 'auth/CHANGE_FIELD';
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
 
-const [JOIN, JOIN_SUCCESS, JOIN_FAILURE] =
-  createRequestActionTypes('auth/JOIN');
+const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] =
+  createRequestActionTypes('auth/REGISTER');
 
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] =
   createRequestActionTypes('auth/LOGIN');
@@ -18,49 +18,48 @@ const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] =
 export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({
-    form, //join or login
-    key, // nickname, password, passwordConfirm
+    form, //register or login
+    key, // username, password, passwordConfirm
     value, //실제 바꾸려는 값
   })
 );
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
-// join or login
+// register or login
 
-export const join = createAction(
-  JOIN,
-  ({ nickname, email, name, password }) => ({
-    nickname,
+export const register = createAction(
+  REGISTER,
+  ({ username, email, password }) => ({
+    username,
     email,
-    name,
     password,
   })
 );
 
-export const login = createAction(LOGIN, ({ nickname, password }) => ({
-  nickname,
+export const login = createAction(LOGIN, ({ username, password }) => ({
+  username,
   password,
 }));
 
 //사가 생성
-const joinSaga = createRequestSaga(JOIN, authAPI.join);
+const registerSaga = createRequestSaga(REGISTER, authAPI.register);
 const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 
 export function* authSaga() {
-  yield takeLatest(JOIN, joinSaga);
+  yield takeLatest(REGISTER, registerSaga);
   yield takeLatest(LOGIN, loginSaga);
 }
 
 const initialState = {
-  join: {
-    nickname: '',
+  register: {
+    username: '',
     email: '',
     name: '',
     password: '',
     passwordConfirm: '',
   },
   login: {
-    nickname: '',
+    username: '',
     password: '',
   },
   auth: null,
@@ -71,20 +70,20 @@ const auth = handleActions(
   {
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, (draft) => {
-        draft[form][key] = value; //ex) state.join.nickname
+        draft[form][key] = value; //ex) state.REGISTER.nickname
       }),
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
     }),
     //회원가입 성공
-    [JOIN_SUCCESS]: (state, { payload: auth }) => ({
+    [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
       auth,
     }),
     //회원가입 실패
-    [JOIN_FAILURE]: (state, { payload: error }) => ({
+    [REGISTER_FAILURE]: (state, { payload: error }) => ({
       ...state,
       authError: error,
     }),
