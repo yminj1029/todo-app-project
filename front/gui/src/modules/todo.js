@@ -38,23 +38,20 @@ export const removeTodo = createAction(REMOVE_TODO, (id) => id);
 
 //redux-saga : 비동기적으로 dispatch실행
 //takeLates :가장 마지막 action만 처리
-const listTodosSaga = createRequestSaga(LIST_TODOS, todoAPI.listTodos);
 const insertTodoSaga = createRequestSaga(INSERT_TODO, todoAPI.addTodo);
 const checkTodoSaga = createRequestSaga(CHECK_TODO, todoAPI.checkTodo);
 const removeTodoSaga = createRequestSaga(REMOVE_TODO, todoAPI.removeTodo);
+const listTodosSaga = createRequestSaga(LIST_TODOS, todoAPI.listTodos);
 
 export function* todoSaga() {
-  yield takeLatest(LIST_TODOS, listTodosSaga);
   yield takeLatest(INSERT_TODO, insertTodoSaga);
   yield takeLatest(CHECK_TODO, checkTodoSaga);
   yield takeLatest(REMOVE_TODO, removeTodoSaga);
+  yield takeLatest(LIST_TODOS, listTodosSaga);
 }
 // 초기 상태
 const initialState = {
   todos: null,
-  // checkTodo: null,
-  // removeTodo: null,
-  // type: null,
   error: null,
 };
 
@@ -81,10 +78,10 @@ const todo = handleActions(
     }),
   },
   {
-    [CHECK_TODO_SUCCESS]: (state, action) => ({
+    [CHECK_TODO_SUCCESS]: (state, { payload: todos }) => ({
       ...state,
       todos: state.todos.map((todo) =>
-        todo.id === action.payload.id ? { ...todo, check: !todo.check } : todo
+        todo.id === todos.id ? { check: !todo.check } : todo
       ),
     }),
     [CHECK_TODO_FAILURE]: (state, { payload: error }) => ({

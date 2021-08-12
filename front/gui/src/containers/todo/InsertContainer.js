@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import TodoInsert from '../../components/todo/TodoInsert';
 import { useSelector, useDispatch } from 'react-redux';
-import { insertTodo, listTodos } from '../../modules/todo';
+import { insertTodo } from '../../modules/todo';
 
 const InsertContainer = () => {
   const [value, setValue] = useState('');
@@ -17,9 +17,9 @@ const InsertContainer = () => {
     console.log(error);
   }
 
-  const onChange = useCallback((e) => {
+  const onChange = (e) => {
     setValue(e.target.value);
-  }, []);
+  };
 
   //폼 등록 이벤트 핸들러
   const onSubmit = useCallback(
