@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import TodoInsert from '../../components/todo/TodoInsert';
 import { useSelector, useDispatch } from 'react-redux';
-import { insertTodo, listTodos } from '../../modules/todo';
+import { insertTodo } from '../../modules/todo';
 
 const InsertContainer = () => {
   const [value, setValue] = useState('');
@@ -24,18 +24,13 @@ const InsertContainer = () => {
   //폼 등록 이벤트 핸들러
   const onSubmit = useCallback(
     (e) => {
-      dispatch(insertTodo({ content: value, nickname: 'name', date: date }));
-      // e.preventDefault();
+      e.preventDefault();
+      dispatch(insertTodo({ content: value, username: 'name', date: date }));
       setValue('');
     },
     [dispatch, value, date]
   );
 
-  // useEffect(() => {
-  //   return () => {
-  //     // dispatch(listTodos(date));
-  //   };
-  // });
   return (
     <TodoInsert
       value={value}

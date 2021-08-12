@@ -8,8 +8,8 @@ export const listTodos = (date) => {
 };
 
 //addTodo -> content, nickname 필요함
-export const addTodo = ({ content, nickname, date }) => {
-  return client.post('api/', { content, nickname, date });
+export const addTodo = ({ content, username, date }) => {
+  return client.post('api/', { content, username, date });
 };
 
 //removeTodo -> id 값으로 삭제

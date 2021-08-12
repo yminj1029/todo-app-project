@@ -23,9 +23,9 @@ export const listTodos = createAction(LIST_TODOS, (date) => date);
 
 export const insertTodo = createAction(
   INSERT_TODO,
-  ({ content, nickname, date }) => ({
+  ({ content, username, date }) => ({
     content,
-    nickname,
+    username,
     date,
   })
 );
@@ -38,30 +38,20 @@ export const removeTodo = createAction(REMOVE_TODO, (id) => id);
 
 //redux-saga : 비동기적으로 dispatch실행
 //takeLates :가장 마지막 action만 처리
-const listTodosSaga = createRequestSaga(LIST_TODOS, todoAPI.listTodos);
-export function* listSaga() {
-  yield takeLatest(LIST_TODOS, listTodosSaga);
-}
 const insertTodoSaga = createRequestSaga(INSERT_TODO, todoAPI.addTodo);
-export function* insertSaga() {
-  yield takeLatest(INSERT_TODO, insertTodoSaga);
-}
-
 const checkTodoSaga = createRequestSaga(CHECK_TODO, todoAPI.checkTodo);
-export function* checkSaga() {
-  yield takeLatest(CHECK_TODO, checkTodoSaga);
-}
-
 const removeTodoSaga = createRequestSaga(REMOVE_TODO, todoAPI.removeTodo);
-export function* removeSaga() {
+const listTodosSaga = createRequestSaga(LIST_TODOS, todoAPI.listTodos);
+
+export function* todoSaga() {
+  yield takeLatest(INSERT_TODO, insertTodoSaga);
+  yield takeLatest(CHECK_TODO, checkTodoSaga);
   yield takeLatest(REMOVE_TODO, removeTodoSaga);
+  yield takeLatest(LIST_TODOS, listTodosSaga);
 }
 // 초기 상태
 const initialState = {
   todos: null,
-  // checkTodo: null,
-  // removeTodo: null,
-  // type: null,
   error: null,
 };
 
@@ -76,33 +66,30 @@ const todo = handleActions(
       ...state,
       error,
     }),
-  },
-  {
-    [INSERT_TODO_SUCCESS]: (state, action) => ({
+
+    [INSERT_TODO_SUCCESS]: (state, { payload: todos }) => ({
       ...state,
-      todos: state.todos.concat(action.payload),
+      todos: state.todos.concat(todos),
     }),
     [INSERT_TODO_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),
-  },
-  {
-    [CHECK_TODO_SUCCESS]: (state, action) => ({
+
+    [CHECK_TODO_SUCCESS]: (state, { payload: todos }) => ({
       ...state,
       todos: state.todos.map((todo) =>
-        todo.id === action.payload.id ? { ...todo, check: !todo.check } : todo
+        todo.id === todos.id ? { ...todos, check: !todo.check } : todo
       ),
     }),
     [CHECK_TODO_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),
-  },
-  {
-    [REMOVE_TODO_SUCCESS]: (state, { payload: todos }) => ({
+
+    [REMOVE_TODO_SUCCESS]: (state, { request }) => ({
       ...state,
-      todos,
+      todos: state.todos.filter((todo) => todo.id !== request),
     }),
     [REMOVE_TODO_FAILURE]: (state, { payload: error }) => ({
       ...state,

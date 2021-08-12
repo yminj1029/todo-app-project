@@ -11,4 +11,4 @@ class TodoViewSet(viewsets.ModelViewSet):
     serializer_class = TodoSerializer
     queryset = Todo.objects.all()
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['date'] # 나중에 nickname 추가
+    filterset_fields = ['date']  # 나중에 username 추가
