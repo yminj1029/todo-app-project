@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { removeTodo, checkTodo } from '../../modules/todo';
 import TodoListItem from '../../components/todo/TodoListItem';
 
-const ItemContainer = ({ id, content, checked }) => {
+const ItemContainer = ({ id, content, checked, history }) => {
   const dispatch = useDispatch();
   const onRemove = useCallback(
     (e) => {

@@ -39,21 +39,14 @@ export const removeTodo = createAction(REMOVE_TODO, (id) => id);
 //redux-saga : 비동기적으로 dispatch실행
 //takeLates :가장 마지막 action만 처리
 const listTodosSaga = createRequestSaga(LIST_TODOS, todoAPI.listTodos);
-export function* listSaga() {
-  yield takeLatest(LIST_TODOS, listTodosSaga);
-}
 const insertTodoSaga = createRequestSaga(INSERT_TODO, todoAPI.addTodo);
-export function* insertSaga() {
-  yield takeLatest(INSERT_TODO, insertTodoSaga);
-}
-
 const checkTodoSaga = createRequestSaga(CHECK_TODO, todoAPI.checkTodo);
-export function* checkSaga() {
-  yield takeLatest(CHECK_TODO, checkTodoSaga);
-}
-
 const removeTodoSaga = createRequestSaga(REMOVE_TODO, todoAPI.removeTodo);
-export function* removeSaga() {
+
+export function* todoSaga() {
+  yield takeLatest(LIST_TODOS, listTodosSaga);
+  yield takeLatest(INSERT_TODO, insertTodoSaga);
+  yield takeLatest(CHECK_TODO, checkTodoSaga);
   yield takeLatest(REMOVE_TODO, removeTodoSaga);
 }
 // 초기 상태
