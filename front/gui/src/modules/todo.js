@@ -23,9 +23,9 @@ export const listTodos = createAction(LIST_TODOS, (date) => date);
 
 export const insertTodo = createAction(
   INSERT_TODO,
-  ({ content, nickname, date }) => ({
+  ({ content, username, date }) => ({
     content,
-    nickname,
+    username,
     date,
   })
 );
@@ -66,33 +66,30 @@ const todo = handleActions(
       ...state,
       error,
     }),
-  },
-  {
-    [INSERT_TODO_SUCCESS]: (state, action) => ({
+
+    [INSERT_TODO_SUCCESS]: (state, { payload: todos }) => ({
       ...state,
-      todos: state.todos.concat(action.payload),
+      todos: state.todos.concat(todos),
     }),
     [INSERT_TODO_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),
-  },
-  {
+
     [CHECK_TODO_SUCCESS]: (state, { payload: todos }) => ({
       ...state,
       todos: state.todos.map((todo) =>
-        todo.id === todos.id ? { check: !todo.check } : todo
+        todo.id === todos.id ? { ...todos, check: !todo.check } : todo
       ),
     }),
     [CHECK_TODO_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),
-  },
-  {
-    [REMOVE_TODO_SUCCESS]: (state, { payload: todos }) => ({
+
+    [REMOVE_TODO_SUCCESS]: (state, { request }) => ({
       ...state,
-      todos,
+      todos: state.todos.filter((todo) => todo.id !== request),
     }),
     [REMOVE_TODO_FAILURE]: (state, { payload: error }) => ({
       ...state,

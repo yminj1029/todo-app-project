@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class Todo(models.Model):
     content = models.CharField(max_length=200)
-    nickname = models.CharField(max_length=120, blank=False)
+    username = models.CharField(max_length=120, blank=False)
     # json serialized text version of your list
     check = models.BooleanField(default=False)
     # auto를 사용하고 싶다면 null=True가 필요
