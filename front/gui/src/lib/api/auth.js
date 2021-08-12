@@ -1,11 +1,16 @@
 import client from './client';
 
 //로그인
-export const login = ({ nickname, password }) =>
-  client.post('/user/api-auth/login/', { nickname, password });
+export const login = ({ username, password }) => {
+  return client.post('/user/api-auth/login/', { username, password });
+};
 
 //회원가입
-export const join = ({ nickname, email, name, password }) =>
-  client.post('/user/join/', { nickname, email, name, password });
+export const register = ({ username, email, password }) => {
+  return client.post('/user/join/', { username, email, password });
+};
 
 //로그인 상태 확인
+export const check = () => {
+  return client.register('/user/check');
+};

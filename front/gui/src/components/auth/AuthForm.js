@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 //로그인페이지, 회원가입 페이지 내용을 보여줌
 const textMap = {
   login: '로그인',
-  join: '회원가입',
+  register: '회원가입',
 };
 
 const AuthForm = ({ type, form, onChange, onSubmit }) => {
@@ -15,48 +15,38 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
       <h3>{text}</h3>
       <form onSubmit={onSubmit}>
         <input
-          name="nickname"
+          name="username"
           type="text"
           placeholder="닉네임"
-          // onChange={onChange}
-          // value={form.nickname}
+          onChange={onChange}
+          value={form.username}
         ></input>
-        {type === 'join' && (
+        {type === 'register' && (
           <input
-            // autoComplete="email"
+            autoComplete="email"
             name="email"
             placeholder="이메일 주소"
             type="email"
-            // onChange={onChange}
-            // value={form.email}
-          ></input>
-        )}
-        {type === 'join' && (
-          <input
-            // autoComplete="name"
-            type="text"
-            name="name"
-            placeholder="이름"
-            // onChange={onChange}
-            // value={form.name}
+            onChange={onChange}
+            value={form.email}
           ></input>
         )}
         <input
-          // autoComplete="new-password"
+          autoComplete="new-password"
           name="password"
           placeholder="비밀번호"
           type="password"
-          // onChange={onChange}
-          // value={form.password}
+          onChange={onChange}
+          value={form.password}
         ></input>
-        {type === 'join' && (
+        {type === 'register' && (
           <input
-            // autoComplete="new-password"
+            autoComplete="new-password"
             name="passwordConfirm"
             placeholder="비밀번호 확인"
             type="password"
-            // onChange={onChange}
-            // value={form.passwordConfirm}
+            onChange={onChange}
+            value={form.passwordConfirm}
           ></input>
         )}
         <button>{text}</button>

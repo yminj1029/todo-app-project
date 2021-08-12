@@ -1,16 +1,18 @@
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
 import todo, { listSaga, insertSaga, checkSaga, removeSaga } from './todo';
+import auth, { authSaga } from './auth';
 import loading from './loading';
 import date from './date';
 const rootReducer = combineReducers({
   todo,
   date,
   loading,
+  auth,
 });
 
 export function* rootSaga() {
-  yield all([listSaga(), insertSaga(), checkSaga(), removeSaga()]);
+  yield all([authSaga(), listSaga(), insertSaga(), checkSaga(), removeSaga()]);
 }
 export default rootReducer;
 

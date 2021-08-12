@@ -9,11 +9,7 @@ export const listTodos = (date) => {
 
 //addTodo -> content, nickname 필요함
 export const addTodo = ({ content, nickname, date }) => {
-  return client.post('api/', {
-    content: content,
-    nickname: nickname,
-    date: date,
-  });
+  return client.post('api/', { content, nickname, date });
 };
 
 //removeTodo -> id 값으로 삭제
