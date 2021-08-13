@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, register } from '../../modules/auth';
 import AuthForm from '../../components/auth/AuthForm';
@@ -12,6 +12,10 @@ const JoinForm = ({ history }) => {
     authError: auth.authError,
     user: user.user,
   }));
+
+  //에러 발생
+  const [error, setError] = useState(null);
+
   //인풋 변경 이벤트 핸들러
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -25,11 +29,16 @@ const JoinForm = ({ history }) => {
   };
   //폼 등록 이벤트 핸들러
   const onSubmit = (e) => {
-    console.log('가입');
     e.preventDefault();
     const { username, email, password1, password2 } = form;
+    if ([username, email, password1, password2].includes('')) {
+      setError('빈 칸을 모두 입력하세요.');
+      return;
+    }
     if (password1 !== password2) {
-      console.log('오류 처리');
+      setError('비밀번호가 일치하지 않습니다.');
+      dispatch(changeField({ form: 'register', key: 'password1', value: '' }));
+      dispatch(changeField({ form: 'register', key: 'password2', value: '' }));
       return;
     }
     dispatch(register({ username, email, password1, password2 }));
@@ -43,8 +52,12 @@ const JoinForm = ({ history }) => {
   //회원가입 성공/실패 처리
   useEffect(() => {
     if (authError) {
-      console.log('오류 발생');
-      console.log(authError);
+      if (authError.response.status === 400) {
+        setError('이미 존재하는 계정입니다.');
+        return;
+      }
+      //기타이유
+      setError('회원가입 실패');
       return;
     }
     if (auth) {
@@ -69,6 +82,7 @@ const JoinForm = ({ history }) => {
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
+      error={error}
     ></AuthForm>
   );
 };
