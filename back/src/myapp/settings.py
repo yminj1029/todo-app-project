@@ -37,11 +37,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'corsheaders',
-    'rest_framework',  # rest framework 사용
-    'todos',  # todo 관리를 할 앱 추가
+
+    # rest framework 사용
+    'rest_framework',
     'django_filters',  # 필터링 기능 추가
+
+    # auth
+    'rest_framework.authtoken',
+    'rest_auth',
+
+    # signup
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
+    # todo 앱 추가
+    'todos',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     # API 통신을 위해 필요한 CORS 추가
@@ -145,3 +162,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = False

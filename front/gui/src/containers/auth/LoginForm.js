@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 const LoginForm = ({ history }) => {
   const dispatch = useDispatch();
   const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
-    form: auth.register,
+    form: auth.login,
     auth: auth.auth,
     authError: auth.authError,
     user: user.user,
@@ -27,6 +27,7 @@ const LoginForm = ({ history }) => {
   };
   //폼 등록 이벤트 핸들러
   const onSubmit = (e) => {
+    console.log('로그인');
     e.preventDefault();
     const { username, password } = form;
     dispatch(login({ username, password }));
