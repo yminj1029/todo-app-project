@@ -27,12 +27,12 @@ const JoinForm = ({ history }) => {
   const onSubmit = (e) => {
     console.log('가입');
     e.preventDefault();
-    const { username, email, password, passwordConfirm } = form;
-    if (password !== passwordConfirm) {
+    const { username, email, password1, password2 } = form;
+    if (password1 !== password2) {
       console.log('오류 처리');
       return;
     }
-    dispatch(register({ username, email, password }));
+    dispatch(register({ username, email, password1, password2 }));
   };
 
   // 컴포넌트가 처음 렌더링 될 때 form을 초기화함

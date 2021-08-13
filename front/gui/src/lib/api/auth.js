@@ -2,12 +2,17 @@ import client from './client';
 
 //로그인
 export const login = ({ username, password }) => {
-  return client.post('/user/api-auth/login/', { username, password });
+  return client.post('rest-auth/login/', { username, password });
 };
 
 //회원가입
-export const register = ({ username, email, password }) => {
-  return client.post('/user/join/', { username, email, password });
+export const register = ({ username, email, password1, password2 }) => {
+  return client.post('rest-auth/register/', {
+    username,
+    email,
+    password1,
+    password2,
+  });
 };
 
 //로그인 상태 확인
