@@ -59,7 +59,7 @@ const JoinForm = ({ history }) => {
     if (user) {
       console.log('checkAPI성공');
       console.log(user);
-      history.push('/todo');
+      history.push('/');
     }
   }, [history, user]);
 
