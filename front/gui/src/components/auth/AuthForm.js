@@ -43,7 +43,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
             ></input>
             <input
               autoComplete="new-password"
-              name="password1"
+              name="password"
               placeholder="비밀번호"
               type="password"
               onChange={onChange}
@@ -51,7 +51,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
             ></input>
             <input
               autoComplete="new-password"
-              name="password2"
+              name="passwordConfirm"
               placeholder="비밀번호 확인"
               type="password"
               onChange={onChange}

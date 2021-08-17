@@ -30,22 +30,21 @@ const JoinForm = ({ history }) => {
   //폼 등록 이벤트 핸들러
   const onSubmit = (e) => {
     e.preventDefault();
-    const { username, email, password1, password2 } = form;
-    console.log(password1.length);
-    if ([username, email, password1, password2].includes('')) {
+    const { username, email, password, passwordConfirm } = form;
+    if ([username, email, password, passwordConfirm].includes('')) {
       setError('빈 칸을 모두 입력하세요.');
       return;
     }
-    if (password1.length <= 8) {
-      setError('password는 8글자 이상');
-    }
-    if (password1 !== password2) {
+
+    if (password !== passwordConfirm) {
       setError('비밀번호가 일치하지 않습니다.');
-      dispatch(changeField({ form: 'register', key: 'password1', value: '' }));
-      dispatch(changeField({ form: 'register', key: 'password2', value: '' }));
+      dispatch(changeField({ form: 'register', key: 'password', value: '' }));
+      dispatch(
+        changeField({ form: 'register', key: 'passwordConfirm', value: '' })
+      );
       return;
     }
-    dispatch(register({ username, email, password1, password2 }));
+    dispatch(register({ username, email, password }));
   };
 
   // 컴포넌트가 처음 렌더링 될 때 form을 초기화함
