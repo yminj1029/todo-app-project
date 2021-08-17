@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, login } from '../../modules/auth';
 import AuthForm from '../../components/auth/AuthForm';
@@ -14,6 +14,9 @@ const LoginForm = ({ history }) => {
     user: user.user,
   }));
 
+  //에러 발생
+  const [error, setError] = useState(null);
+
   //인풋 변경 이벤트 핸들러
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -27,7 +30,6 @@ const LoginForm = ({ history }) => {
   };
   //폼 등록 이벤트 핸들러
   const onSubmit = (e) => {
-    console.log('로그인');
     e.preventDefault();
     const { username, password } = form;
     dispatch(login({ username, password }));
@@ -41,8 +43,8 @@ const LoginForm = ({ history }) => {
   //로그인 성공/실패 처리
   useEffect(() => {
     if (authError) {
-      console.log('오류 발생');
       console.log(authError);
+      setError('아이디와 비밀번호를 확인해주세요');
       return;
     }
     if (auth) {
@@ -57,7 +59,7 @@ const LoginForm = ({ history }) => {
     if (user) {
       console.log('checkAPI성공');
       console.log(user);
-      history.push('/todo');
+      history.push('/');
     }
   }, [history, user]);
 
@@ -67,6 +69,7 @@ const LoginForm = ({ history }) => {
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
+      error={error}
     ></AuthForm>
   );
 };

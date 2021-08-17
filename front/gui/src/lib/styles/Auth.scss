@@ -15,7 +15,7 @@
     width: 100%;
     margin-top: 1rem;
     &:focus {
-      color: red;
+      color: #343a40;
       border-bottom: 1px solid #495057;
     }
   }
@@ -49,5 +49,11 @@
     &:hover {
       background: #ffd43b;
     }
+  }
+  .error {
+    color: red;
+    text-align: center;
+    font-size: 0.875rem;
+    margin-top: 1rem;
   }
 }
