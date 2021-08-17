@@ -48,14 +48,11 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
 
-    # signup
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'rest_auth.registration',
-
     # todo 앱 추가
     'todos',
+
+    # account 커스터마이징
+    'account'
 ]
 
 SITE_ID = 1
@@ -163,6 +160,4 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_EMAIL_REQUIRED = False
+AUTH_USER_MODEL = 'account.User'  # 인증은 account앱에서

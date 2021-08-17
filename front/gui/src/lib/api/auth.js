@@ -6,12 +6,11 @@ export const login = ({ username, password }) => {
 };
 
 //회원가입
-export const register = ({ username, email, password1, password2 }) => {
-  return client.post('rest-auth/register/', {
+export const register = ({ username, email, password }) => {
+  return client.post('rest-auth/join/', {
     username,
     email,
-    password1,
-    password2,
+    password,
   });
 };
 
