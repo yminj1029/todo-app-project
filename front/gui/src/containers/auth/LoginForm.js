@@ -30,7 +30,6 @@ const LoginForm = ({ history }) => {
   };
   //폼 등록 이벤트 핸들러
   const onSubmit = (e) => {
-    console.log('로그인');
     e.preventDefault();
     const { username, password } = form;
     dispatch(login({ username, password }));
@@ -44,9 +43,8 @@ const LoginForm = ({ history }) => {
   //로그인 성공/실패 처리
   useEffect(() => {
     if (authError) {
-      console.log('오류 발생');
       console.log(authError);
-      setError('로그인 실패');
+      setError('아이디와 비밀번호를 확인해주세요');
       return;
     }
     if (auth) {

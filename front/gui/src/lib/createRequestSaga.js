@@ -23,6 +23,7 @@ export default function createRequestSaga(type, request) {
         payload: response.data,
       });
     } catch (e) {
+      console.log(e.message);
       yield put({
         type: FAILURE,
         payload: e,

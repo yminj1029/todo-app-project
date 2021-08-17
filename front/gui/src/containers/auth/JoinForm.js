@@ -31,9 +31,13 @@ const JoinForm = ({ history }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, email, password1, password2 } = form;
+    console.log(password1.length);
     if ([username, email, password1, password2].includes('')) {
       setError('빈 칸을 모두 입력하세요.');
       return;
+    }
+    if (password1.length <= 8) {
+      setError('password는 8글자 이상');
     }
     if (password1 !== password2) {
       setError('비밀번호가 일치하지 않습니다.');
