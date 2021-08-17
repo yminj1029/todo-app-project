@@ -56,7 +56,15 @@ const JoinForm = ({ history }) => {
   useEffect(() => {
     if (authError) {
       if (authError.response.status === 400) {
-        setError('이미 존재하는 계정입니다.');
+        setError('이미 존재하는 아이디입니다.');
+        return;
+      }
+      if (authError.response.status === 500) {
+        setError('이미 존재하는 email입니다.');
+        return;
+      }
+      if (authError.response.status === 403) {
+        setError('비밀번호는 8글자 이상이어야 합니다.');
         return;
       }
       //기타이유
@@ -64,20 +72,22 @@ const JoinForm = ({ history }) => {
       return;
     }
     if (auth) {
-      console.log('회원가입 성공');
+      //여기 좀이상함...
       console.log(auth);
-      dispatch(userCheck());
+      setError('');
+      dispatch(initializeForm('register'));
+      history.push('/login'); //회원가입 성공 후 redux비우기
     }
-  }, [auth, authError, dispatch]);
+  }, [auth, authError, dispatch, history]);
 
   //user값이 잘 설정되었는지 확인
-  useEffect(() => {
-    if (user) {
-      console.log('checkAPI성공');
-      console.log(user);
-      history.push('/');
-    }
-  }, [history, user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log('checkAPI성공');
+  //     console.log(user);
+  //     history.push('/');
+  //   }
+  // }, [history, user]);
 
   return (
     <AuthForm

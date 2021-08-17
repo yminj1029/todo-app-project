@@ -35,10 +35,9 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(
-        default='', max_length=100, null=False, blank=False, unique=True)
+        default='', max_length=100, null=False, blank=False)
     username = models.CharField(
         default='', max_length=100, null=False, blank=False, unique=True)
-
     # User 모델의 필수 field
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -48,7 +47,7 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'username'
     # 필수로 작성해야하는 field
-    # REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return self.username
