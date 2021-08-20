@@ -1,9 +1,8 @@
 from django.urls import path, include
-from account.api.views import UserCreateViewSet
-
+# from account.api.views import join
+from . import views
 urlpatterns = [
-    path('join/', UserCreateViewSet.as_view()),
-    path('rest-auth/', include('rest_auth.urls')),
-
+    path('join/', views.join),
     # path('login/', include('rest_framework.urls')),
 ]
+# https://velog.io/@ayoung0073/DRF-signup-login-jwt
