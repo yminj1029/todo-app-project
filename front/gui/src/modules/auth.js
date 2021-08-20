@@ -15,6 +15,9 @@ const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] =
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] =
   createRequestActionTypes('auth/LOGIN');
 
+const [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE] =
+  createRequestActionTypes('auth/LOGOUT');
+
 export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({
@@ -41,13 +44,19 @@ export const login = createAction(LOGIN, ({ username, password }) => ({
   password,
 }));
 
+export const logout = createAction(LOGOUT, ({ username }) => ({
+  username,
+}));
+
 //사가 생성
 const registerSaga = createRequestSaga(REGISTER, authAPI.register);
 const loginSaga = createRequestSaga(LOGIN, authAPI.login);
+const logoutSaga = createRequestSaga(LOGOUT, authAPI.logout);
 
 export function* authSaga() {
   yield takeLatest(REGISTER, registerSaga);
   yield takeLatest(LOGIN, loginSaga);
+  yield takeLatest(LOGOUT, logoutSaga);
 }
 
 const initialState = {
@@ -94,6 +103,16 @@ const auth = handleActions(
     }),
     //로그인 실패
     [LOGIN_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      authError: error,
+    }),
+    //로그아웃 성공
+    [LOGOUT_SUCCESS]: (state) => ({
+      ...state,
+      auth: null,
+    }),
+    //로그아웃 실패
+    [LOGOUT_FAILURE]: (state, { payload: error }) => ({
       ...state,
       authError: error,
     }),

@@ -6,7 +6,7 @@ import { insertTodo } from '../../modules/todo';
 const InsertContainer = () => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
-
+  const username = localStorage.getItem('user');
   const { date, error } = useSelector((state) => ({
     date: state.date.date,
     error: state.todo.error,
@@ -25,10 +25,10 @@ const InsertContainer = () => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(insertTodo({ content: value, username: 'name', date: date }));
+      dispatch(insertTodo({ content: value, username: username, date: date }));
       setValue('');
     },
-    [dispatch, value, date]
+    [dispatch, value, username, date]
   );
 
   return (

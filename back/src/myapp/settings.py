@@ -170,6 +170,8 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = 'account.User'  # 인증은 account앱에서
+ACCOUNT_LOGOUT_ON_GET = True
+
 
 JWT_AUTH = {
     'JWT_SECRET_KEY': SECRET_KEY,

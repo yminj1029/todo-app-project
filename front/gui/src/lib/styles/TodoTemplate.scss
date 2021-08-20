@@ -22,7 +22,9 @@
     margin-top: 3rem;
     margin-bottom: 3rem;
 
-    a {
+    button {
+      border: 0;
+      outline: 0;
       color: #868e96;
       text-decoration: underline;
       &:hover {

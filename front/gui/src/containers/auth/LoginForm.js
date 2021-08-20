@@ -41,16 +41,17 @@ const LoginForm = ({ history }) => {
   //로그인 성공/실패 처리
   useEffect(() => {
     if (authError) {
-      console.log(authError);
       setError('아이디와 비밀번호를 확인해주세요');
       return;
     }
     if (auth) {
-      console.log('로그인 성공');
-      console.log(auth);
+      localStorage.clear();
+      localStorage.setItem('token', auth.key);
+      localStorage.setItem('user', form.username);
       history.push('/todo');
+      dispatch(initializeForm('login'));
     }
-  }, [auth, authError, history, dispatch]);
+  }, [auth, authError, history, form, dispatch]);
 
   return (
     <AuthForm

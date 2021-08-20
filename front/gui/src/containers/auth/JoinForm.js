@@ -70,7 +70,6 @@ const JoinForm = ({ history }) => {
       return;
     }
     if (auth) {
-      //여기 좀이상함...
       console.log(auth);
       setError('');
       dispatch(initializeForm('register'));
