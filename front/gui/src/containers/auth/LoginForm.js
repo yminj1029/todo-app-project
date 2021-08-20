@@ -2,16 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, login } from '../../modules/auth';
 import AuthForm from '../../components/auth/AuthForm';
-import { userCheck } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 
 const LoginForm = ({ history }) => {
   const dispatch = useDispatch();
-  const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
+  const { form, auth, authError } = useSelector(({ auth }) => ({
     form: auth.login,
     auth: auth.auth,
     authError: auth.authError,
-    user: user.user,
   }));
 
   //에러 발생
@@ -50,18 +48,9 @@ const LoginForm = ({ history }) => {
     if (auth) {
       console.log('로그인 성공');
       console.log(auth);
-      dispatch(userCheck());
+      history.push('/todo');
     }
-  }, [auth, authError, dispatch]);
-
-  //user값이 잘 설정되었는지 확인
-  useEffect(() => {
-    if (user) {
-      console.log('checkAPI성공');
-      console.log(user);
-      history.push('/');
-    }
-  }, [history, user]);
+  }, [auth, authError, history, dispatch]);
 
   return (
     <AuthForm
