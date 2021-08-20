@@ -150,8 +150,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # 인증된 사용자만 접근 가능
-        # 'rest_framework.permissions.AllowAny',  # 우선 다 허가
+        # 'rest_framework.permissions.IsAuthenticated',  # 인증된 사용자만 접근 가능
+        'rest_framework.permissions.AllowAny',  # 우선 다 허가
     ],
     # 자동으로 json으로 바꿔줌
     'DEFAULT_RENDERER_CLASSES': (
