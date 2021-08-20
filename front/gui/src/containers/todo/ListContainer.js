@@ -20,7 +20,7 @@ const ListContainer = () => {
 
   //날짜가 바뀌면 새 리스트 보여줌
   useEffect(() => {
-    dispatch(listTodos(date, username));
+    dispatch(listTodos({ date: date, username: username }));
   }, [date, username, dispatch]);
 
   return <TodoList data={data} date={date}></TodoList>;

@@ -19,7 +19,10 @@ const [REMOVE_TODO, REMOVE_TODO_SUCCESS, REMOVE_TODO_FAILURE] =
   createRequestActionTypes('todo/REMOVE_TODO');
 
 //액션 생성 함수 : 실제 컴포넌트에서 디스패치되는 함수.
-export const listTodos = createAction(LIST_TODOS, (date) => date);
+export const listTodos = createAction(LIST_TODOS, ({ date, username }) => ({
+  date,
+  username,
+}));
 
 export const insertTodo = createAction(
   INSERT_TODO,

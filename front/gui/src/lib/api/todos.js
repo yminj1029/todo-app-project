@@ -1,9 +1,9 @@
 import client from './client';
 
 //listTodos -> 날짜별로 가져옴
-export const listTodos = (date) => {
+export const listTodos = ({ date, username }) => {
   return client.get('api/', {
-    params: { date: date },
+    params: { date: date, username: username },
   });
 };
 
