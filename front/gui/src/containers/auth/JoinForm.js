@@ -70,7 +70,6 @@ const JoinForm = ({ history }) => {
       return;
     }
     if (auth) {
-      console.log(auth);
       setError('');
       alert(auth.message);
       dispatch(initializeForm('register'));
