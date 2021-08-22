@@ -73,8 +73,8 @@ const JoinForm = ({ history }) => {
       console.log(auth);
       setError('');
       alert(auth.message);
-      history.push('/login'); //회원가입 성공 후 redux비우기
-      // dispatch(initializeForm('register'));
+      dispatch(initializeForm('register'));
+      return history.push('/'); //회원가입 성공 후 redux비우기
     }
   }, [auth, authError, dispatch, history]);
 
