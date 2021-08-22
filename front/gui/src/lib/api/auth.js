@@ -18,8 +18,3 @@ export const register = ({ username, email, password }) => {
 export const logout = ({ username }) => {
   return client.post('rest-auth/logout/', { username });
 };
-
-// 로그인 상태 확인
-export const checkUser = () => {
-  return client.register('/user/check');
-};

@@ -12,11 +12,6 @@ const InsertContainer = () => {
     error: state.todo.error,
   }));
 
-  if (error) {
-    //팝업창 띄우든징...나중에 수정
-    console.log(error);
-  }
-
   const onChange = useCallback((e) => {
     setValue(e.target.value);
   }, []);
@@ -30,6 +25,10 @@ const InsertContainer = () => {
     },
     [dispatch, value, username, date]
   );
+
+  if (error) {
+    return <div className="error">로그인 후 사용 가능합니다</div>;
+  }
 
   return (
     <TodoInsert

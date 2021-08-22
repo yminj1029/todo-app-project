@@ -6,7 +6,6 @@ import { logout } from '../../modules/auth';
 import { withRouter } from 'react-router-dom';
 
 const TodoTemplate = ({ children }) => {
-  console.log(localStorage);
   const dispatch = useDispatch();
   const handleLogout = () => {
     const username = localStorage.getItem('user');
