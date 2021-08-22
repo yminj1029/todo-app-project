@@ -14,7 +14,12 @@ export const register = ({ username, email, password }) => {
   });
 };
 
-//로그인 상태 확인
+//로그아웃
+export const logout = ({ username }) => {
+  return client.post('rest-auth/logout/', { username });
+};
+
+// 로그인 상태 확인
 export const checkUser = () => {
   return client.register('/user/check');
 };

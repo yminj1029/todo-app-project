@@ -5,7 +5,7 @@ import { listTodos } from '../../modules/todo';
 
 const ListContainer = () => {
   const dispatch = useDispatch();
-
+  const username = localStorage.getItem('user');
   //redux state에 있는 값 꺼내옴
   const { date, data, error } = useSelector((state) => ({
     date: state.date.date,
@@ -20,8 +20,8 @@ const ListContainer = () => {
 
   //날짜가 바뀌면 새 리스트 보여줌
   useEffect(() => {
-    dispatch(listTodos(date));
-  }, [date, dispatch]);
+    dispatch(listTodos({ date: date, username: username }));
+  }, [date, username, dispatch]);
 
   return <TodoList data={data} date={date}></TodoList>;
 };

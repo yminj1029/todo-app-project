@@ -161,22 +161,24 @@ REST_FRAMEWORK = {
     # 필터링 기능
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
-    # 기본 인증 기능 : jwt사용
+    # 기본 인증 기능 : authtoken
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = 'account.User'  # 인증은 account앱에서
+ACCOUNT_LOGOUT_ON_GET = True
 
-JWT_AUTH = {
-    'JWT_SECRET_KEY': SECRET_KEY,
-    'JWT_ALGORITHM': 'HS256',  # 암호화 알고리즘
-    'JWT_ALLOW_REFRESH': True,  # refresh 사용 여부
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 유효기간 설정
-    # JWT 토큰 갱신 유효기간
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28),
-    # import datetime 상단에 import 하기
-}
+
+# JWT_AUTH = {
+#     'JWT_SECRET_KEY': SECRET_KEY,
+#     'JWT_ALGORITHM': 'HS256',  # 암호화 알고리즘
+#     'JWT_ALLOW_REFRESH': True,  # refresh 사용 여부
+#     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 유효기간 설정
+#     # JWT 토큰 갱신 유효기간
+#     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28),
+#     # import datetime 상단에 import 하기
+# }

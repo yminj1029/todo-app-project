@@ -4,7 +4,7 @@ import loading from './loading';
 import todo, { todoSaga } from './todo';
 import date from './date';
 import auth, { authSaga } from './auth';
-import user, { userSaga } from './user';
+import user from './user';
 const rootReducer = combineReducers({
   loading,
   todo,
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), todoSaga(), userSaga()]);
+  yield all([authSaga(), todoSaga()]);
 }
 export default rootReducer;
 

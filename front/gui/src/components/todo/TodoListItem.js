@@ -7,7 +7,7 @@ import {
 import '../../lib/styles/TodoListItem.scss';
 import cn from 'classnames';
 
-const TodoListItem = ({ id, content, checked, onToggle, onRemove }) => {
+const TodoListItem = ({ content, checked, onToggle, onRemove }) => {
   return (
     <div className="TodoListItem">
       <div className={cn('checkbox', { checked })} onClick={onToggle}>
