@@ -6,13 +6,13 @@ import { logout } from '../../modules/auth';
 import { withRouter } from 'react-router-dom';
 
 const TodoTemplate = ({ children }) => {
-  console.log(localStorage);
   const dispatch = useDispatch();
   const handleLogout = () => {
     const username = localStorage.getItem('user');
     dispatch(logout({ username }));
     localStorage.clear();
-    window.location.replace('http://localhost:3000/login');
+    //window.location.replace 뒤로가기 불가능
+    window.location.replace('/');
   };
 
   return (

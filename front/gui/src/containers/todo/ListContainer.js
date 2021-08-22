@@ -13,16 +13,14 @@ const ListContainer = () => {
     error: state.todo.error,
   }));
 
-  if (error) {
-    //팝업창 띄우든징...나중에 수정
-    console.log(error);
-  }
-
   //날짜가 바뀌면 새 리스트 보여줌
   useEffect(() => {
     dispatch(listTodos({ date: date, username: username }));
   }, [date, username, dispatch]);
 
+  if (error) {
+    return <div className="error">로그인 후 사용 가능합니다</div>;
+  }
   return <TodoList data={data} date={date}></TodoList>;
 };
 

@@ -14,7 +14,6 @@ const ItemContainer = ({ id, content, checked, history }) => {
 
   const onToggle = useCallback(
     (e) => {
-      // console.log(check);
       dispatch(checkTodo({ id: id, check: checked }));
     },
     [dispatch, id, checked]

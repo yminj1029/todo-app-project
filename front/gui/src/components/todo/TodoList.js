@@ -24,7 +24,7 @@ const TodoList = ({ data, date }) => {
       <InsertContainer></InsertContainer>
       <div className="TodoList">
         {isEmptyArr(data) ? (
-          <h3>할 일이 없습니다</h3>
+          <div className="error">할 일을 추가해주세요</div>
         ) : (
           data.map((data) => (
             <ItemContainer

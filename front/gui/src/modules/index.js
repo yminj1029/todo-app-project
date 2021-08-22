@@ -4,13 +4,11 @@ import loading from './loading';
 import todo, { todoSaga } from './todo';
 import date from './date';
 import auth, { authSaga } from './auth';
-import user from './user';
 const rootReducer = combineReducers({
   loading,
   todo,
   date,
   auth,
-  user,
 });
 
 export function* rootSaga() {

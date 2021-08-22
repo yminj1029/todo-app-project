@@ -7,7 +7,7 @@ const AuthTemplate = ({ children }) => {
     <div className="TodoTemplate">
       <div className="white-box" style={{ margin: '8rem' }}>
         <div className="logo-area">
-          <Link to="/todo">TODO</Link>
+          <Link to="/">TODO</Link>
         </div>
         {children}
       </div>

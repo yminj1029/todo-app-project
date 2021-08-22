@@ -6,9 +6,9 @@ import { Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <Route component={JoinPage} path="/join"></Route>
-      <Route component={LoginPage} path="/login"></Route>
-      <Route component={TodoPage} path="/todo"></Route>
+      <Route component={JoinPage} exact path="/join"></Route>
+      <Route component={LoginPage} exact path="/"></Route>
+      <Route component={TodoPage} exact path="/todo"></Route>
     </div>
   );
 }
