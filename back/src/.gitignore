@@ -1,6 +1,7 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/django,react,venv,virtualenv,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,react,venv,virtualenv,visualstudiocode
+/myapp/secret.py
 
 ### Django ###
 *.log

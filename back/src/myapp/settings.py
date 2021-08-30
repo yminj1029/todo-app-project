@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import datetime
-
+from .secret import MY_SECRET, MY_DATABASE
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,8 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e3t*3qb&#xhp0e0+i7_rjm#ogk=zh7bm*dcrz_d3kg=4m!s!#f'
-
+SECRET_KEY = MY_SECRET['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -94,17 +93,8 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'todo',
-        'HOST': 'mongodb+srv://mj_todo:00310929-00375mj@todo.apgfs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-        'USER': 'mj_todo',
-        'PASSWORD': '00310929-00375mj',
-    }
-}
-
+# DATABASE = MY_DATABASE
+DATABASES = MY_DATABASE
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
