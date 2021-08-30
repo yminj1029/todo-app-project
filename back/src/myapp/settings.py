@@ -98,9 +98,10 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'myapp_db',
-        'HOST': '127.0.0.1',
-        'PORT': 27017,
+        'NAME': 'todo',
+        'HOST': 'mongodb+srv://mj_todo:00310929-00375mj@todo.apgfs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+        'USER': 'mj_todo',
+        'PASSWORD': '00310929-00375mj',
     }
 }
 
